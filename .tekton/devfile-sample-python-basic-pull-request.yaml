@@ -29,6 +29,51 @@ spec:
     value: 5d
   - name: dockerfile
     value: docker/Dockerfile
+  taskRunSpecs:
+  - pipelineTaskName: build-container
+    stepSpecs:
+      - name: build
+        computeResources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            memory: 1Gi
+      - name: prepare-sboms
+        computeResources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            memory: 1Gi
+      - name: upload-sbom
+        computeResources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            memory: 1Gi
+      - name: push
+        computeResources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            memory: 1Gi
+      - name: sbom-syft-generate
+        computeResources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            memory: 1Gi
+  - pipelineTaskName: build-container
+    computeResources:
+      requests:
+        cpu: 10m
+        memory: 64Mi
+      limits:
+        memory: 2Gi  
   pipelineSpec:
     description: |
       This pipeline is ideal for building container images from a Containerfile while reducing network traffic.
